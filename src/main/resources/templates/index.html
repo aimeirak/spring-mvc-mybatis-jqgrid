@@ -1,0 +1,96 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MyBatis MySQL CRUD</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/5.6.0/css/ui.jqgrid-bootstrap-ui.min.css" integrity="sha512-Le5SZRnS7S4ArmiYClxIKwWLrs9SoHPyh+oQG7zSBbvm0QQosIoKLW6w7etCry7JlH4Zg4Yr54rWcHf9tq741g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/5.6.0/css/ui.jqgrid-bootstrap4.min.css" integrity="sha512-plewgF+K5wG+M+GQlXSV2JeOAq+U2kDCXHSnIssBQ4KXwOfR82LcwB0EgJLc3WtagsE609WTSh2T8+f8xjCs5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/5.6.0/js/jquery.jqGrid.min.js" integrity="sha512-yPWyiZjg1ulWkaPiYyRTROUnGPK//B1ct+paU089gY8Grxm9WQrtZFSkT+kqLSbSuCesgUDpuj6dbLWUSRQvCA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/5.6.0/js/i18n/grid.locale-en.min.js" integrity="sha512-4TZxmj5NUzpv+4W1Utt/9BDRkVgqzrLx5RIW9lyQbrt3DPrKckwgETuIKrzyOdJ1dE0VcJ5phtcrHWTMHtE2dA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <style>
+        .container{
+            margin-top: 10px;
+            max-width: 750px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <h4>User Registration</h4><br/>
+    <h5>User List</h5>
+    <table id="list">
+                <tr>
+                        <td/>
+                </tr>
+        </table>
+</div>
+</body>
+<script type="text/javascript">
+ $(document).ready(function(){
+  $("#list").jqGrid({
+                url : "loadUser",
+                datatype : "json",
+                mtype : 'GET',
+                colNames : [ 'First Name','Last Name','Phone Number'],
+                colModel : [ {
+                        name : 'firstName',
+                        index : 'firstName',
+                        width : 250
+                }, {
+                        name : 'lastName',
+                        index : 'lastName',
+                        width : 250,
+                        editable : true
+                }, {
+                        name : 'mobilePhone',
+                        index : 'mobilePhone',
+                        width : 190,
+                        editable : false
+                }],
+                pager : '#pager',
+                rowNum : 10,
+                height: 'auto',
+                rowList : [ 10 ],
+                sortname : 'invid',
+                sortorder : 'desc',
+                viewrecords : true,
+                gridview : true,
+                multiselect: true,
+            multiboxonly: false,
+                caption : 'User Registration',
+                jsonReader : {
+                        repeatitems : false,
+                }
+        });
+        jQuery("#list").jqGrid('navGrid', '#pager', {
+                edit : false,
+                add : false,
+                del : false,
+                search : false
+        });
+         
+         
+        $('#showSelected').on('click',function(){
+          
+         var selRowArr = jQuery("#list").getGridParam('selarrrow');
+         var selectedAppIds = [];
+         for(var i=0;i<selRowArr.length;i++){
+          var celValue =  $('#list').jqGrid('getCell', selRowArr[i], 'firstName');
+          selectedAppIds.push(celValue);
+         }
+         alert(selectedAppIds);
+         $('#list').trigger( 'reloadGrid' );
+          
+    
+        });
+  
+ });
+</script>
+</html>
