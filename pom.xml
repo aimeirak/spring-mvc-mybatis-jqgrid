@@ -8,13 +8,16 @@
 		<version>2.6.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>rw.register</groupId>
 	<artifactId>register</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>register</name>
 	<description>registration of users</description>
 	<properties>
-		<java.version>11</java.version>
+			<java.version>11</java.version>
+			<maven.compiler.source>1.8</maven.compiler.source>
+			<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		  <dependency>
@@ -50,7 +53,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
 		<dependency>
 	        <groupId>org.springframework.security</groupId>
 	        <artifactId>spring-security-core</artifactId>
@@ -59,6 +61,15 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
 		   <!--  <spring.version>5.2.8.RELEASE</spring.version> --> 
+		</dependency>
+		 <dependency>
+        	<groupId>com.fasterxml.jackson.dataformat</groupId>
+        	<artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.1</version>
 		</dependency>
 	</dependencies>
 	<build>

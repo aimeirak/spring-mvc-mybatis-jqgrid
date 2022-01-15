@@ -13,7 +13,13 @@ public interface userRepository {
 	int insert(User user);
 	@Select("SELECT * FROM users")
 	List<User> findAll();
-	
-	@Select("SELECT MOBILEPHONE,PASSWORD FROM users where MOBILEPHONE = #{mobilePhone}")
+	@Select("SELECT * FROM users where MOBILEPHONE = #{mobilePhone}")
 	User  selectByPhone(@Param("mobilePhone") String mobilePhone);
+//	@Update("UPDATE users set MOBILEPHONE=#{mobilePhone} where MOBILEPHONE=#{mobilePhone}")
+
+	@Update("update users set FIRSTNAME=#{firstName},LASTNAME=#{lastName} WHERE MOBILEPHONE = #{mobilePhone} ")
+	int updateUser(User user);
+	
+	@Delete("DELETE FROM users WHERE MOBILEPHONE = #{mobilePhone}")
+	int deleteUser(@Param("mobilePhone") String mobilePhone);
 }
