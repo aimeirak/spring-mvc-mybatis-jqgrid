@@ -21,12 +21,31 @@ public class userServices {
     	 userRepo.insert(user);
     }
     
+    public User saveApi(User user){
+    	user.setPassword(encoder.encode(user.getPassword()));
+    	 userRepo.insert(user);
+    	 return user;
+    }
+   
     public User getUserbyid(String mobile,String password){
-    	
 //    	user.setPassword(encoder.encode(user.getPassword()));
     	String passWordCome = password;
     	String mobilephone =mobile;
     	 User userOne = userRepo.selectByPhone(mobilephone);
     	 return  userOne;
     }
+    
+    public User getEmployee(String mobile) {
+    	String mobilePhone = mobile;
+        return userRepo.selectByPhone(mobilePhone);
+    }
+    
+    public void updateUser(User user) {
+        userRepo.updateUser(user);
+    }
+ public void deleteUser(String mobilePhone) {
+       userRepo.deleteUser(mobilePhone);
+      
+//    String user = "Deleted Successfully";
+}
 }

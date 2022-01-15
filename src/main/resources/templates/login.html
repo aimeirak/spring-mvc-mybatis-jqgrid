@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Registration System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -19,7 +19,6 @@
     width:350px;
     border-radius: 25px;
     margin:150px auto;
-  
 }
 
 #email{
@@ -57,14 +56,17 @@
 <body id="body">
 <div id="login-card" class="card">
 <div class="card-body">
+ 
   <h2 class="text-center">Login form</h2>
+  
   <br>
   <form action="user-login" method="post">
     <div class="form-group">
-      <input type="text" class="form-control" id="email" placeholder="Enter Phone Number" name="mobilePhone">
+    <h1 th:text="${error}"></h1>
+      <input type="text" class="form-control" id="mobilePhone"  placeholder="Enter Phone Number" name="mobilePhone">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" id="email" placeholder="Enter password" name="password">
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
     </div>
     <button type="submit" id="button" class="btn btn-primary deep-purple btn-block ">Submit</button>
 <br>
@@ -72,4 +74,4 @@
   </form>
   <a href="register">Register Account</a>
 </div>
-<div>
+</div>
